@@ -1,0 +1,16 @@
+.popup__img-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFFFFF;
+    grid-column: 3/4;
+    margin: 2px 0 0;
+}
+
+@media screen and (max-width: 780px) {
+    .popup__img-title {
+        grid-column: 2/3;
+    }
+}

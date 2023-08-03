@@ -1,0 +1,12 @@
+.sign {
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 358px;
+    margin: 23px auto auto;
+    padding: 0;*/
+
+    width: 358px;
+    padding-top: 60px;
+    margin: 0 auto;
+}

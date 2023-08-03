@@ -1,0 +1,8 @@
+.element__like-area {
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
