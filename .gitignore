@@ -24,6 +24,7 @@ coverage
 
 # production
  /build
+ /frontend/build
 
 # env
 .env 
