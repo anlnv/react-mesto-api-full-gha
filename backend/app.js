@@ -13,8 +13,6 @@ const usersRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const NotFoundError = require('./errors/NotFoundError');
 const error = require('./middlewares/errors');
-
-const corsOptions = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const URL = 'mongodb://127.0.0.1:27017/mestodb';
