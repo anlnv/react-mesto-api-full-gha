@@ -4,6 +4,8 @@ logs
 
 # Dependency directory
 /node_modules
+node_modules
+
 
 # Optional npm cache directory
 .npm
@@ -23,8 +25,11 @@ logs
 coverage
 
 # production
- /build
- /frontend/build
+build
+/build
+/frontend/build
+/backend/node_modules
+/frontend/node_modules
 
 # env
 .env 
