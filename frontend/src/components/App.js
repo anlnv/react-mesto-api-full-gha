@@ -71,6 +71,7 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+
   const logOut = () => {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
@@ -85,6 +86,20 @@ function App() {
           localStorage.setItem("jwt", response.token);
           setUserEmail(email);
           setLoggedIn(true);
+          api
+            .getUserInfoFromServer()
+            .then((res) => {
+              setCurrentUser(res);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          api.getInitialCards()
+            .then((res) => {
+              setCards(res);
+            })
+            .catch(err => console.log(err));
           navigate("/");
         }
       })
@@ -118,17 +133,6 @@ function App() {
       [name]: value,
     }));
   };
-
-
-
-
-
-
-
-
-
-
-
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -211,7 +215,7 @@ function App() {
   return (
     <div className='page'>
       <CurrentUserContext.Provider value={currentUser}>
-        <Header userEmail={userEmail} onSignOut={logOut}/>
+        <Header userEmail={userEmail} onSignOut={logOut} />
         <Routes >
 
           <Route

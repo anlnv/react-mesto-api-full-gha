@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
 const signupRouter = require('./routes/signupRouter');
 const signinRouter = require('./routes/signinRouter');
 const auth = require('./middlewares/auth');
@@ -17,6 +17,7 @@ const corsOptions = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const URL = 'mongodb://127.0.0.1:27017/mestodb';
+const { PORT = 3001 } = process.env;
 
 mongoose
   .connect(URL)
@@ -35,6 +36,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 app.use(corsOptions);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', signinRouter);
 app.post('/signup', signupRouter);
@@ -49,6 +55,6 @@ app.use(errorLogger);
 app.use(errors());
 app.use(error);
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log('Сервер запущен');
 });

@@ -95,9 +95,12 @@ class Api {
     editAvatar({ avatar }) {
         return fetch(this._baseUrl + '/users/me/avatar', {
             method: "PATCH",
-            headers: this._headers,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-type': 'application/json'
+              },
             body: JSON.stringify({
-                avatar
+                avatar: avatar
             })
         })
             .then(res => this._checkResponse(res))
