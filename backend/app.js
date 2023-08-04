@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const signupRouter = require('./routes/signupRouter');
@@ -35,7 +36,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
-app.use(corsOptions);
+app.use(cors());
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
